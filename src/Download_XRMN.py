@@ -1,8 +1,9 @@
 from src.lib_share import *
 import threading
-
+import urllib.parse
 
 base_url = "https://www.xrmn5.cc"
+
 
 def download_all_image_in_page(img_url: str, folder: str, num: int):
     wl("download_all_image_in_page:  url=" + img_url, 2)
@@ -12,7 +13,7 @@ def download_all_image_in_page(img_url: str, folder: str, num: int):
         title = soup.find('h1').string
         wl("title = " + title, 2)
     except:
-        return
+        return num
 
     save_folder = os.path.join(folder, title)
     if not os.path.exists(save_folder):
@@ -110,10 +111,22 @@ def loop_web(first_url: str, my_base_save_folder: str):
         download_image_in_web_thread(first_url, my_base_save_folder)
 
 
+def download_by_keyword(keyword: str):
+    new_url = "https://www.xrmn5.cc/plus/search/index.asp?keyword=" + urllib.parse.quote(keyword)
+    print(new_url)
+    loop_web(new_url, base_folder)
+
+
+def download_by_url(down_url: str):
+    loop_web(down_url, base_folder)
+
+
 if __name__ == '__main__':
     base_folder = os.path.join(get_base_folder(), 'mn')
 
-    my_url_link = ["https://www.xrmn5.cc/plus/search/index.asp?keyword=%E6%A1%82%E6%9E%97"]
+    # download_by_url("https://www.xrmn5.cc/")
 
-    for my_url in my_url_link:
-        loop_web(my_url, base_folder)
+    download_by_keyword("杨晨晨")
+
+
+
