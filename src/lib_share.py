@@ -26,6 +26,10 @@ def get_base_folder() -> str:
     if os.path.exists(base_folder):
         return base_folder
 
+    base_folder = r'D:\OneDrive\图片\Pic18'
+    if os.path.exists(base_folder):
+        return base_folder
+
 
 
 def get_uni_file_path(folder: str, img_web: str, img_id: str, img_num: str) -> str:

@@ -26,7 +26,7 @@ def view_image(folder_series: str, search_keyword: str, days: float = 3, max_num
 
     my_label.pack(side='top')
 
-    cv.pack(side='top', fill='both', expand='yes')
+    cv.pack(side='top', fill='both', expand=1)
 
     cv.bind('<Double-1>', lambda event: set_image(cv, my_label, my_pic_lib, 0, 10))
 
@@ -54,7 +54,7 @@ def view_image(folder_series: str, search_keyword: str, days: float = 3, max_num
 if __name__ == '__main__':
     series = ['mn', '18av', 'meitulu', 'eclub']
     index = 0
-    keyword = ''
-    days = 1
+    keyword = '杨晨晨'
+    days = 2
     max_num = 99
-    view_image(series[index], keyword, days, max_num)
+    view_image(series[index % 4], keyword, days, max_num)

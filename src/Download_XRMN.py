@@ -2,7 +2,7 @@ from src.lib_share import *
 import threading
 import urllib.parse
 
-base_url = "https://www.xrmn5.cc"
+base_url = "https://www.xrmn5.com"
 
 
 def download_all_image_in_page(img_url: str, folder: str, num: int):
@@ -112,7 +112,8 @@ def loop_web(first_url: str, my_base_save_folder: str):
 
 
 def download_by_keyword(keyword: str):
-    new_url = "https://www.xrmn5.cc/plus/search/index.asp?keyword=" + urllib.parse.quote(keyword)
+    print("download_by_keyword: = " + keyword)
+    new_url = base_url + "/plus/search/index.asp?keyword=" + urllib.parse.quote(keyword)
     print(new_url)
     loop_web(new_url, base_folder)
 
@@ -124,9 +125,15 @@ def download_by_url(down_url: str):
 if __name__ == '__main__':
     base_folder = os.path.join(get_base_folder(), 'mn')
 
-    # download_by_url("https://www.xrmn5.cc/")
+    download_by_url("https://www.xrmn5.com/rm.html")
+    download_by_url("https://www.xrmn5.com/tj.html")
+    # download_by_keyword("Fish")
+    # download_by_keyword("Booty")
+    # download_by_keyword("杨晨晨")
+    # download_by_keyword("林星阑")
+    # download_by_keyword("唐安琪")
 
-    download_by_keyword("杨晨晨")
+
 
 
 
