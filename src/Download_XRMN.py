@@ -2,7 +2,7 @@ from src.lib_share import *
 import threading
 import urllib.parse
 
-base_url = "https://www.xrmn5.com"
+base_url = "https://www.xrmn01.vip"
 
 
 def download_all_image_in_page(img_url: str, folder: str, num: int):
@@ -102,38 +102,41 @@ def download_image_in_web_thread(base_url_link: str, my_base_save_folder: str):
         t.join()
 
 
-def loop_web(first_url: str, my_base_save_folder: str):
+def loop_web(first_url: str, my_base_save_folder: str, max_page: int):
     if first_url.find("keyword") > 0:
-        for i in range(0, 10):
+        for i in range(0, max_page):
             new_url: str = first_url + "&p=" + str(i)
             download_image_in_web_thread(new_url, my_base_save_folder)
     else:
         download_image_in_web_thread(first_url, my_base_save_folder)
 
 
-def download_by_keyword(keyword: str):
+def download_by_keyword(keyword: str, max_page: int):
     print("download_by_keyword: = " + keyword)
-    new_url = base_url + "/plus/search/index.asp?keyword=" + urllib.parse.quote(keyword)
+
+    new_url = "https://www.xrmn01.cc/plus/search/index.asp?keyword=" + urllib.parse.quote(keyword) + "&searchtype=title"
     print(new_url)
-    loop_web(new_url, base_folder)
+    loop_web(new_url, base_folder, max_page)
 
 
-def download_by_url(down_url: str):
-    loop_web(down_url, base_folder)
+def download_by_url(down_url: str, max_page: int):
+    loop_web(down_url, base_folder, max_page)
 
 
 if __name__ == '__main__':
     base_folder = os.path.join(get_base_folder(), 'mn')
 
-    download_by_url("https://www.xrmn5.com/rm.html")
-    download_by_url("https://www.xrmn5.com/tj.html")
-    # download_by_keyword("Fish")
-    # download_by_keyword("Booty")
-    # download_by_keyword("杨晨晨")
-    # download_by_keyword("林星阑")
-    # download_by_keyword("唐安琪")
+    download_by_url(base_url + "/rm.html", 1)
+    download_by_url(base_url + "/tj.html", 1)
 
-
-
-
-
+    download_by_keyword("Fish", 1)
+    download_by_keyword("Booty", 1)
+    download_by_keyword("杨晨晨", 1)
+    download_by_keyword("林星阑", 1)
+    download_by_keyword("小海臀", 1)
+    download_by_keyword("桃桃子", 1)
+    download_by_keyword("奈奈子", 1)
+    download_by_keyword("夏沫沫", 1)
+    download_by_keyword("绮里嘉", 1)
+    download_by_keyword("李雅柔", 1)
+    download_by_keyword("玥儿玥er", 1)

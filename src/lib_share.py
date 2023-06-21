@@ -14,19 +14,8 @@ def wl(msg: str, level: int = 1):
 
 
 def get_base_folder() -> str:
-    base_folder = r'F:\Pic18'
-    if os.path.exists(base_folder):
-        return base_folder
 
-    base_folder = r'E:\Pic18'
-    if os.path.exists(base_folder):
-        return base_folder
-
-    base_folder = r'G:\Pic18'
-    if os.path.exists(base_folder):
-        return base_folder
-
-    base_folder = r'D:\OneDrive\图片\Pic18'
+    base_folder = r'C:\Users\baido\OneDrive\Data\Pic18'
     if os.path.exists(base_folder):
         return base_folder
 
@@ -49,6 +38,8 @@ def save_image_by_url_to_file(file_path: str, url: str, ref_url: str = 'null') -
         wl('File Already Exists:' + file_path, 2)
         return 1
 
+    requests.packages.urllib3.disable_warnings()
+
     if ref_url == 'null':
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/62.0.3202.94 Safari/537.36'}
@@ -56,7 +47,7 @@ def save_image_by_url_to_file(file_path: str, url: str, ref_url: str = 'null') -
         headers = {"Referer": ref_url,
                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/62.0.3202.94 Safari/537.36'}
     try:
-        content = requests.get(url, headers=headers)
+        content = requests.get(url, headers=headers, verify=False)
         if content.status_code == 200:
             with open(file_path, 'wb') as f:
                 for chunk in content:
