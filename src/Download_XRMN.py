@@ -140,3 +140,11 @@ if __name__ == '__main__':
     download_by_keyword("绮里嘉", 1)
     download_by_keyword("李雅柔", 1)
     download_by_keyword("玥儿玥er", 1)
+    download_by_keyword("程程程", 1)
+    download_by_keyword("幼幼", 1)
+    download_by_keyword("筱慧", 1)
+    download_by_keyword("安然", 1)
+
+
+
+

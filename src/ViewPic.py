@@ -5,16 +5,16 @@ import os
 
 def set_image(cv: tk.Canvas, my_label: tk.Label, my_pic_lib: PicLib, folder_offset: int, file_offset: int):
     photo = my_pic_lib.get_photo_image(folder_offset, file_offset)
-    cv.create_image(0, 0, image=photo, anchor='nw')
+    cv.create_image(10,  10, image=photo, anchor='nw' )
     cv.image = photo
     text: str = my_pic_lib.text
     my_label.configure(text=text, justify='left')
 
 
-def view_image(folder_series: str, search_keyword: str, days: float = 3, max_num: int = 299):
+def view_image(folder_series: str, search_keyword: str, days_range: float = 3, max_num_series: int = 299):
     base_path = os.path.join(get_base_folder(), folder_series)
 
-    my_pic_lib = PicLib(base_path, search_keyword, days, max_num)
+    my_pic_lib = PicLib(base_path, search_keyword, days_range, max_num_series)
 
     root = tk.Tk()
     cv = tk.Canvas(root)
@@ -54,7 +54,7 @@ def view_image(folder_series: str, search_keyword: str, days: float = 3, max_num
 if __name__ == '__main__':
     series = ['mn', '18av', 'meitulu', 'eclub']
     index = 0
-    keyword = 'Fish'
-    days = 21
+    keyword = ''
+    days = 2
     max_num = 99
     view_image(series[index % 4], keyword, days, max_num)
